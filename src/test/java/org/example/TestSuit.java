@@ -1,5 +1,6 @@
 package org.example;
 
+import javafx.scene.control.Alert;
 import org.testng.annotations.Test;
 
 public class TestSuit extends BaseTest{
@@ -11,6 +12,9 @@ public class TestSuit extends BaseTest{
     Computers computers = new Computers();
     Desktops desktops =new Desktops();
     ShoppingCart shoppingCart =new ShoppingCart();
+    NopCommerceNewRelease nopCommerceNewRelease = new NopCommerceNewRelease();
+    FacebookPage facebookPage = new FacebookPage();
+    ProductNikePage productNikePage = new ProductNikePage();
 
 
     @Test
@@ -46,6 +50,14 @@ public class TestSuit extends BaseTest{
     }
 
 
+    //-------------------------------------------------------------------------------------------------------------------
+
+    @Test
+    public void getProductTitles(){
+        homePage.getProductTitles();
+    }
+
+
     //------------------------------------------------------------------------------------------------------------------
     @Test
     public void userShouldBeSelectFeatureSuccessFully() {
@@ -73,6 +85,42 @@ public class TestSuit extends BaseTest{
         registerSuccess.userShouldClickTheContinueButton();
         homePage.SelectGoodOptionInCommunityPoll();
         homePage.ClickOnVoteButton();
+
+    }
+    @Test
+    public void verifyTheMessagePleaseSelectAnAnswer(){
+
+        homePage.verifyTheMessagePleaseSelectAnAnswer();
+    }
+    @Test
+    public void clickOnFacebookLogo(){
+
+        homePage.clickOnFacebookLogo();
+        facebookPage.verifyTheFacebookUrlAndHandlePopUpWindow();
+    }
+
+    @Test
+    public void verifyTheProductSortByNameZtoA(){
+        desktops.verifyTheProductSortByNameZtoA();
+    }
+
+    @Test
+    public void verifyTheTitleNopCommerceNewRelease(){
+        homePage.verifyTheTitleNopCommerceNewRelease();
+        homePage.verifyTheUrlAfterClickingNopCommerceNewRelease();
+        nopCommerceNewRelease.verifyTheMessageNopCommerceNewReleaseOnTopOfLeaveYourComment();
+        nopCommerceNewRelease.enterDetailsOnTitleBox();
+        nopCommerceNewRelease.enterDetailsOnCommentBox();
+        nopCommerceNewRelease.clickOnNewComment();
+        nopCommerceNewRelease.verifyYourCommentAddedOnCommentBox();
+        nopCommerceNewRelease.listOfComments();
+    }
+    @Test
+    public void enterTheProductNameInTheBox(){
+        homePage.enterTheProductNameInTheBox();
+        homePage.clickOnSearchButton();
+        productNikePage.verifyTheUrl();
+        productNikePage.allProductContainsNike();
 
     }
 }

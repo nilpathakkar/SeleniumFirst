@@ -15,6 +15,8 @@ public class RegisterPage extends Utils{
     private By _ConfirmPassword = By.xpath("//input[@name=\"ConfirmPassword\"]");
     private By _ClickOnRegister = By.xpath("//button[@name=\"register-button\"]");
 
+    LoadProp loadprop = new LoadProp();
+
 
     public void userShouldEnterDetailsOnRegisterPageSuccessfully(){
         //select gender
@@ -22,34 +24,36 @@ public class RegisterPage extends Utils{
 
         //enter first name
         // driver.findElement(By.xpath("//input[@name='FirstName']")).sendKeys("Automation");
-        typetext(_FirstName, "Automation");
+        typetext(_FirstName, loadprop.getProperty("firstname"));
         //enter lastname
         //driver.findElement(By.id("LastName")).sendKeys("LastNameTest");
-        typetext(_LastName, "LastNameTest");
+        typetext(_LastName,loadprop.getProperty("lastname"));
 
         //Select day of birth from drop down
         Select DateOfBirthday = new Select(driver.findElement(_SelectDayOfBirthFromDropDown));
-        DateOfBirthday.selectByIndex(29);
+        int DateOfBirth = Integer.parseInt(loadprop.getProperty("DateOfBirthday"));
+        DateOfBirthday.selectByIndex(DateOfBirth);
 
         //Select month of birth from drop down
         Select MonthOfBirthday = new Select(driver.findElement(_SelectMonthOfBirthFromDropDown));
-        MonthOfBirthday.selectByIndex(11);
+        int MonthOfBirth = Integer.parseInt(loadprop.getProperty("MonthOfBirthday"));
+        MonthOfBirthday.selectByIndex(MonthOfBirth);
 
         //Select year of birth from  drop down
         Select YearOfBirthday = new Select(driver.findElement(_SelectYearOfBirthFromDropDown));
-        YearOfBirthday.selectByVisibleText("1984");
+        YearOfBirthday.selectByVisibleText(loadprop.getProperty("YearOfBirthday"));
 
         // Enter  on Email address
         //driver.findElement(By.xpath("//input[@name=\"Email\"]")).sendKeys("bmail@gmail.com");
-        typetext(_EnterOnEmailAddress, "bmail" + randomDate() + "@gmail.com");
+        typetext(_EnterOnEmailAddress, loadprop.getProperty("EmailFirstPart")+ randomDate() +loadprop.getProperty("EmailSecondPart"));
 
         //Enter password
         // driver.findElement(By.xpath("//input[@name=\"Password\"]")).sendKeys("123456");
-        typetext(_EnterOnPassword, "123456");
+        typetext(_EnterOnPassword, loadprop.getProperty("EnterOnPassword"));
 
         //Enter confirm password
         // driver.findElement(By.xpath("//input[@name=\"ConfirmPassword\"]")).sendKeys("123456");
-        typetext(_ConfirmPassword, "123456");
+        typetext(_ConfirmPassword, loadprop.getProperty("ConfirmPassword"));
 
         //Click on register
         //driver.findElement(By.xpath("//button[@name=\"register-button\"]")).click();
