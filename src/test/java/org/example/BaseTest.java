@@ -11,9 +11,11 @@ public class BaseTest extends DriverManager{
     DriverManager driverManager = new DriverManager();
 
     @BeforeMethod
+
     public void openSetup(){
         driverManager.openTheBrowser();
     }
+
 
 
     @AfterMethod
